@@ -18,12 +18,9 @@ interface AppProps {
   Theme: Theme
 }
 const App = styled.div<AppProps>`
-  display: grid;
+  background: ${props => props.Theme.Background};
   text-align: center;
-  min-height: 100vh;
-  grid-template-areas: 
-    ". content .";
-  grid-template-columns: ${props => props.Mobile ? "0px auto 0px" : "auto 1200px auto"}; 
+  // min-height: 100vh;
 `
 // const Header = styled.div`
 //   grid-area: header;

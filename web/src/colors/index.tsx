@@ -1,6 +1,6 @@
 export interface Theme {
   // default text color
-  Text: string
+  Foreground: string
   // generic background color for the page
   Background: string
   // Primary 1 standout hero
@@ -9,30 +9,18 @@ export interface Theme {
   P2: string
   // Primary 3 is super unimportant stuff
   P3: string
-  // Secondary 1, good back drop for p1
-  S1: string
-  // Secondary 2, good back drop for p2
-  S2: string
-  // secondary 3, good back drop for p3
-  S3: string
 }
 export const Dark:Theme = {
-  Text: "white",
+  Foreground: "white",
   Background: "#333333",
-  P1: "yellow",
-  P2: "",
+  P1: "#403FC0",
+  P2: "#6665CD",
   P3: "",
-  S1: "",
-  S2: "",
-  S3: "",
 }
 export const Light:Theme = {
-  Text: "black",
+  Foreground: "#333333",
   Background: "white",
-  P1: "",
-  P2: "",
+  P1: "#403FC0",
+  P2: "#6665CD",
   P3: "",
-  S1: "",
-  S2: "",
-  S3: "",
 }
