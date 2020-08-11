@@ -43,5 +43,4 @@ function AppComponent() {
   );
 }
 
-
 export default AppComponent;
