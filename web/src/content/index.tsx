@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Theme } from '../colors';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLinkedin , faGithub, faGitlab } from '@fortawesome/free-brands-svg-icons'
+
 
 const Wrapper = styled.div<Theme>`
   color: ${props => props.Foreground};
@@ -14,7 +17,7 @@ const BannerSection = styled.section<Theme>`
   background-repeat: no-repeat;
 
   `
-  interface IBackgroundImage {
+interface IBackgroundImage {
     Image: string
   }
 const BackgroundImage = styled.div<IBackgroundImage>`
@@ -31,27 +34,37 @@ const BackgroundImage = styled.div<IBackgroundImage>`
 
   `
 const BannerContentWrapper = styled.div<Theme>`
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 90%;
   top: 25%;
   height: 30%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  backdrop-filter: blur(2px);
   text-align: left;
  
   #Name {
-    width: 40%;
-    margin-right: auto;
-    margin-left: 0;
-  }
-  #Name span{
-    display: inline-block;
     color: ${props => props.Foreground}; 
     font-size: 7.6vmin;
     text-transform: uppercase;
     outline: ${props => props.Background} thick;
+  };
+
+  #Links {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+  #Links a {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: unset;
+    color: inherit;
+    display: inline-block; 
   };
 
   `
@@ -60,11 +73,6 @@ export interface ContentProps {
 }
 class Content extends React.Component<ContentProps,any> {
   render() {
-      // Anthony Poschen Portfolio
-      // show the github, gitlab
-      // link to some cool projects
-      // maybe i should make my game engine run in the browser
-    
 
     return (
       <Wrapper {...this.props.Theme}>
@@ -72,12 +80,18 @@ class Content extends React.Component<ContentProps,any> {
           <BackgroundImage Image="img/bg-1.jpg"/> 
           <BannerContentWrapper {...this.props.Theme}>
             <div id="Name">
-              <span> 
-               Anthony 
-              </span>
-              <span>
-               Poschen 
-              </span>
+               Anthony Poschen 
+            </div>
+            <div id="Links">
+              <a href="https://www.linkedin.com/in/anthony-poschen-83580520/">
+                <FontAwesomeIcon  icon={faLinkedin} size="2x" />
+              </a>
+              <a href="https://github.com/zanven42">
+                <FontAwesomeIcon  icon={faGithub} size="2x" />
+              </a>
+              <a href="https://gitlab.com/zanven">
+                <FontAwesomeIcon icon={faGitlab} size="2x" />
+              </a>
             </div>
           </BannerContentWrapper>
         </BannerSection>
