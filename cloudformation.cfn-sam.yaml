@@ -1,0 +1,59 @@
+Transform: AWS::Serverless-2016-10-31
+
+# Parameters:
+#   
+  # set of parameters
+# Globals:
+  # set of globals
+
+Description: "Template to deploy a simple static website"
+  # String
+
+# Metadata:
+  # template metadata
+
+
+# Mappings:
+  # set of mappings
+
+# Conditions:
+  # set of conditions
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: !Sub "${AWS::AccountId}-${AWS::StackName}-website"
+
+  CloudFrontOriginIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: 'origin identity'
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !GetAtt Bucket.DomainName
+            Id: !Ref Bucket
+        Enabled: true
+        Aliases:
+          - "anthonyposchen.me"
+        DefaultRootObject: "index.html"
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+          TargetOriginId: !GetAtt CloudFrontOriginIdentity.Id
+          ViewerProtocolPolicy: "redirect-to-https"
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: "none"
+
+  # set of resources
+
+# Outputs:
+  # set of outputs
